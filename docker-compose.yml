@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+    bitcoind:
+        build: 
+           dockerfile: ./docker/Dockerfile
+           context: .
+        volumes:
+            - "bitcoin-data:/data"
+        networks:
+            - bitcoin
+        stdin_open: true
+        tty: true
+        ports:
+            - "8332:8332"
+            - "8333:8333"
+
+volumes:
+    bitcoin-data:
+
+networks:
+    bitcoin:
