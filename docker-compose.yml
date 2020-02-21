@@ -2,9 +2,7 @@ version: '3'
 
 services:
     bitcoind:
-        build: 
-           dockerfile: ./docker/Dockerfile
-           context: .
+        build: .
         volumes:
             - "bitcoin-data:/data"
         networks:

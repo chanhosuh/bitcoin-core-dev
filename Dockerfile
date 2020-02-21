@@ -30,8 +30,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 WORKDIR bitcoin
 COPY . .
 
-RUN rm -rf Makefile
-
 # Install local code
 RUN ./autogen.sh \
     && ./configure CFLAGS="-Os" CXXFLAGS="-Os" \
