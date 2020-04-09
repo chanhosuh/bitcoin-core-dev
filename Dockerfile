@@ -1,6 +1,8 @@
 FROM ubuntu:18.04
 MAINTAINER Chan-Ho Suh <csuh.web@gmail.com>
 
+SHELL ["/bin/bash", "-c"]
+
 # Bitcoin Core dependencies and install instructions from
 # https://github.com/bitcoin/bitcoin/blob/master/doc/build-unix.md
 
@@ -13,8 +15,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         autotools-dev \
         bsdmainutils \
         build-essential \
+        curl \
+        git \
         make \
-        python3 \
         libboost-system-dev \
         libboost-filesystem-dev \
         libboost-chrono-dev \
@@ -29,6 +32,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 WORKDIR bitcoin
 COPY . .
+
+
+# ensure we install the oldest supported python version
+ENV PYENV_ROOT ${HOME}/.pyenv
+ENV PATH ${PYENV_ROOT}/bin:${PATH}
+RUN git clone https://github.com/pyenv/pyenv.git ${PYENV_ROOT}
+RUN eval "`pyenv init -`"; pyenv install $(cat .python-version)
+
 
 # Install local code
 RUN ./autogen.sh \
