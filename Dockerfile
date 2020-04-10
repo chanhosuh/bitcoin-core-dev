@@ -2,6 +2,7 @@ FROM ubuntu:18.04
 MAINTAINER Chan-Ho Suh <csuh.web@gmail.com>
 
 SHELL ["/bin/bash", "-c"]
+ENV DEBIAN_FRONTEND noninteractive
 
 # Bitcoin Core dependencies and install instructions from
 # https://github.com/bitcoin/bitcoin/blob/master/doc/build-unix.md
@@ -30,6 +31,26 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 
+# dependencies for python install from
+# https://github.com/pyenv/pyenv/wiki
+RUN apt-get update && apt-get install -y --no-install-recommends \
+		libssl-dev \
+		libbz2-dev \
+  		libreadline-dev \
+  		libsqlite3-dev \
+  		llvm \
+  		libncurses5-dev \
+  		libffi-dev \
+  		liblzma-dev \
+		libxml2-dev \
+		libxmlsec1-dev \
+  		tk-dev \
+  		wget \
+  		xz-utils \
+		zlib1g-dev \
+    && rm -rf /var/lib/apt/lists/*
+    
+    
 WORKDIR bitcoin
 COPY . .
 
