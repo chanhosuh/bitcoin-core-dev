@@ -100,3 +100,7 @@ pull:
 	@docker tag chanhosuh/bitcoin docker-bitcoin_bitcoind
 	@docker rmi chanhosuh/bitcoin
 
+.PHONY: lint
+lint:
+	docker-compose exec bitcoind bash -c "test/lint/lint-python.sh"
+

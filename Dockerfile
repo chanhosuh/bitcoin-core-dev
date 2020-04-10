@@ -58,8 +58,13 @@ COPY . .
 # ensure we install the oldest supported python version
 ENV PYENV_ROOT ${HOME}/.pyenv
 ENV PATH ${PYENV_ROOT}/bin:${PATH}
+
 RUN git clone https://github.com/pyenv/pyenv.git ${PYENV_ROOT}
-RUN eval "`pyenv init -`"; pyenv install $(cat .python-version)
+RUN pyenv install $(cat .python-version)
+
+RUN echo -e 'eval "$(pyenv init -)"' >> ${HOME}/.bashrc
+
+RUN eval "$(pyenv init -)"; pip3 install flake8
 
 
 # Install local code
