@@ -79,8 +79,6 @@ RUN ./autogen.sh \
     # && strip src/bitcoind src/bitcoin-cli src/bitcoin-tx \
 	&& make install
 
-WORKDIR ../
-
  
 # create data directory
 ENV DATA_DIR /data
@@ -88,12 +86,13 @@ RUN mkdir "$DATA_DIR"
  
  
 # install config
-ENV CONFIG_FILE=/root/.bitcoin/bitcoin.conf
+ENV CONFIG_FILE=${HOME}/.bitcoin/bitcoin.conf
 COPY bitcoin.conf "$CONFIG_FILE"
 
 # locale / text encodings
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
  
+
 # CMD bitcoind -printtoconsole -conf="$CONFIG_FILE" -datadir="$DATA_DIR"
 CMD bash
