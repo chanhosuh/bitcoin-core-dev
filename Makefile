@@ -95,10 +95,10 @@ clean:
 .PHONY: pull
 pull:
 	@echo "Pulling image from Docker Hub..."
-	@docker pull chanhosuh/bitcoin
-	@echo "Re-tagging as docker-bitcoin_bitcoind"
-	@docker tag chanhosuh/bitcoin docker-bitcoin_bitcoind
-	@docker rmi chanhosuh/bitcoin
+	@docker pull chanhosuh/bitcoin-core-dev
+	@echo "Re-tagging as bitcoin_bitcoind"
+	@docker tag chanhosuh/bitcoin-core-dev bitcoin_bitcoind
+	@docker rmi chanhosuh/bitcoin-core-dev
 
 .PHONY: lint
 lint:
