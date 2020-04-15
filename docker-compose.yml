@@ -2,9 +2,12 @@ version: '3'
 
 services:
     bitcoind:
-        build: .
+        build:
+           context: ../bitcoin
+           dockerfile: ../bitcoin-core-dev/Dockerfile
         volumes:
             - "bitcoin-data:/data"
+            - "./test/functional:/bitcoin/test/functional"
         networks:
             - bitcoin
         stdin_open: true
@@ -23,3 +26,4 @@ volumes:
 
 networks:
     bitcoin:
+
