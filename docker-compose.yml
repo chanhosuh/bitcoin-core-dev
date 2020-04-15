@@ -7,7 +7,7 @@ services:
            dockerfile: ../bitcoin-core-dev/Dockerfile
         volumes:
             - "bitcoin-data:/data"
-            - "./test/functional:/bitcoin/test/functional"
+            - "../bitcoin/test/functional:/bitcoin/test/functional"
         networks:
             - bitcoin
         stdin_open: true
