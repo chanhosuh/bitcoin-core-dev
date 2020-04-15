@@ -52,7 +52,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     
     
 WORKDIR bitcoin
-COPY . .
+COPY ./.python-version .
 
 
 # ensure we install the oldest supported python version
@@ -66,6 +66,8 @@ RUN echo -e 'eval "$(pyenv init -)"' >> ${HOME}/.bashrc
 
 RUN eval "$(pyenv init -)"; pip3 install flake8
 
+
+COPY . .
 
 # Install local code
 RUN ./autogen.sh \
