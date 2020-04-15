@@ -83,13 +83,13 @@ RUN ./autogen.sh \
 
  
 # create data directory
-ENV DATA_DIR /data
-RUN mkdir "$DATA_DIR"
+# ENV DATA_DIR /data
+# RUN mkdir "$DATA_DIR"
  
  
 # install config
-ENV CONFIG_FILE=${HOME}/.bitcoin/bitcoin.conf
-COPY bitcoin.conf "$CONFIG_FILE"
+# ENV CONFIG_FILE=${HOME}/.bitcoin/bitcoin.conf
+# COPY bitcoin.conf "$CONFIG_FILE"
 
 # locale / text encodings
 ENV LANG C.UTF-8
